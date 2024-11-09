@@ -10,9 +10,9 @@ from pages.base_page import Page
 class SignInPage(Page):
     SIGN_IN_BTN = (By.CSS_SELECTOR, "a[wized='loginButton']")
     EMAIL_FIELD = (By.CSS_SELECTOR, "#email-2")
-    EMAIL = 'dapellome@gmail.com'
+    EMAIL = ''
     PASSWORD_FIELD = (By.CSS_SELECTOR, "#field")
-    PASSWORD = 'Renderos13!'
+    PASSWORD = ''
     SECONDARY_BTN = (By.CSS_SELECTOR, "a[href='/secondary-listings']")
 
 
