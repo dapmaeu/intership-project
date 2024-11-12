@@ -8,7 +8,7 @@ from selenium.webdriver.chrome.options import Options
 from app.application import Application
 
 
-def browser_init(context):
+def browser_init(context, scenario_name):
     """
     :param context: Behave context
     """
@@ -16,9 +16,9 @@ def browser_init(context):
     # service = Service(driver_path)
     # context.driver = webdriver.Chrome(service=service)
 
-    driver_path = GeckoDriverManager().install()
-    service = Service(driver_path)
-    context.driver = webdriver.Firefox(service=service)
+    # driver_path = GeckoDriverManager().install()
+    # service = Service(driver_path)
+    # context.driver = webdriver.Firefox(service=service)
 
 
     # options = webdriver.ChromeOptions()
@@ -29,6 +29,20 @@ def browser_init(context):
     #     service=service
     # )
 
+    bs_user = 'mariadapello_PU8uOI'
+    bs_key = '4v4bdpMsGpRYkH3u39Bd'
+    url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
+
+    options = Options()
+    bstack_options = {
+        "os" : "OS X",
+        "osVersion" : "Monterey",
+        'browserName': 'Safari',
+        'sessionName': scenario_name,
+    }
+    options.set_capability('bstack:options', bstack_options)
+    context.driver = webdriver.Remote(command_executor=url, options=options)
+
     context.driver.maximize_window()
     context.driver.implicitly_wait(4)
     context.app = Application(context.driver)
@@ -36,7 +50,7 @@ def browser_init(context):
 
 def before_scenario(context, scenario):
     print('\nStarted scenario: ', scenario.name)
-    browser_init(context)
+    browser_init(context, scenario.name)
 
 
 def before_step(context, step):

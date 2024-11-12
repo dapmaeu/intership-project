@@ -22,6 +22,8 @@ class SignInPage(Page):
         self.input_text(self.PASSWORD, *self.PASSWORD_FIELD)
         self.wait_to_be_clickable_click(*self.SIGN_IN_BTN)
         self.click(*self.SIGN_IN_BTN)
+        self.wait_for_element_to_disappear(*self.SIGN_IN_BTN)
+
 
 
 
