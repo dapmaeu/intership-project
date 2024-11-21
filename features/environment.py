@@ -11,9 +11,20 @@ def browser_init(context, scenario_name):
     """
     # :param context: Behave context
     """
-    driver_path = ChromeDriverManager().install()
-    service = Service(driver_path)
-    context.driver = webdriver.Chrome(service=service)
+    # driver_path = ChromeDriverManager().install()
+    # service = Service(driver_path)
+    # context.driver = webdriver.Chrome(service=service)
+
+    mobile_emulation = {
+        "deviceName": "Pixel 2"  # Choose a mobile device
+    }
+
+    options = webdriver.ChromeOptions()
+    options.add_experimental_option("mobileEmulation", mobile_emulation)
+
+    # Initialize WebDriver with mobile emulation
+    service = Service(ChromeDriverManager().install())
+    context.driver = webdriver.Chrome(service=service, options=options)
 
     # driver_path = GeckoDriverManager().install()
     # service = Service(driver_path)
@@ -28,8 +39,8 @@ def browser_init(context, scenario_name):
     #     service=service
     # )
 
-    # bs_user = ''
-    # bs_key = ''
+    # bs_user = 'mariadapello_PU8uOI'
+    # bs_key = '4v4bdpMsGpRYkH3u39Bd'
     # url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
     #
     # options = Options()
@@ -37,6 +48,13 @@ def browser_init(context, scenario_name):
     #     "os" : "OS X",
     #     "osVersion" : "Monterey",
     #     'browserName': 'Safari',
+    #     'sessionName': scenario_name,
+    # }
+    # #FOR MOBILE BSTACK OPTIONS
+    # bstack_options = {
+    #     "deviceName" : "Samsung Galaxy S22 Ultra",
+    #     "platformName" : "Android",
+    #     'browserName': 'Chrome',
     #     'sessionName': scenario_name,
     # }
     # options.set_capability('bstack:options', bstack_options)
