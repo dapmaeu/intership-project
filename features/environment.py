@@ -9,22 +9,22 @@ from app.application import Application
 
 def browser_init(context, scenario_name):
     """
-    # :param context: Behave context
+    #:param context: Behave context
     """
-    # driver_path = ChromeDriverManager().install()
-    # service = Service(driver_path)
-    # context.driver = webdriver.Chrome(service=service)
+    driver_path = ChromeDriverManager().install()
+    service = Service(driver_path)
+    context.driver = webdriver.Chrome(service=service)
 
-    mobile_emulation = {
-        "deviceName": "Pixel 2"  # Choose a mobile device
-    }
-
-    options = webdriver.ChromeOptions()
-    options.add_experimental_option("mobileEmulation", mobile_emulation)
-
-    # Initialize WebDriver with mobile emulation
-    service = Service(ChromeDriverManager().install())
-    context.driver = webdriver.Chrome(service=service, options=options)
+    # mobile_emulation = {
+    #     "deviceName": "Pixel 2"  # Choose a mobile device
+    # }
+    #
+    # options = webdriver.ChromeOptions()
+    # options.add_experimental_option("mobileEmulation", mobile_emulation)
+    #
+    # # Initialize WebDriver with mobile emulation
+    # service = Service(ChromeDriverManager().install())
+    # context.driver = webdriver.Chrome(service=service, options=options)
 
     # driver_path = GeckoDriverManager().install()
     # service = Service(driver_path)

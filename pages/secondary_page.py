@@ -10,8 +10,6 @@ class SecondaryPage(Page):
     #APPLY_FILTER_BTN = (By.XPATH, "a[text()='Apply filter' and @class='button-filter w-button']")
     APPLY_FILTER_BTN = (By.CSS_SELECTOR, '[wized="applyFilterButtonMLS"]')
 
-    def verify_right_page(self):
-        self.verify_partial_url('/secondary-listings')
 
     def click_filters_button(self):
         self.click(*self.FILTERS_BTN)
@@ -21,6 +19,9 @@ class SecondaryPage(Page):
 
     def click_apply_filter(self):
         self.click(*self.APPLY_FILTER_BTN)
+
+    def verify_right_page(self):
+        self.verify_partial_url('/secondary-listings')
 
     def verify_all_cards_label(self):
         self.verify_all_cards_label()
