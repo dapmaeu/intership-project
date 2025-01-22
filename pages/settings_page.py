@@ -14,13 +14,13 @@ class SettingsPage(Page):
 
     def click_verification(self):
         self.driver.execute_script("window.scrollBy(0, 3000)", "")
-        sleep(5)
+        sleep(3)
         self.click(*self.VERIFICATION_BTN)
 
 
     def verify_verification_page_opened(self):
         self.verify_partial_url('verification/step-0')
-        sleep(5)
+        sleep(2)
 
 
     def verify_upload_image_and_next_step(self):

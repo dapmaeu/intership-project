@@ -51,13 +51,11 @@ class MainPage(Page):
 
 
     def verify_cards_price_in_range(self):
-        self.verify_cards_price_in_range()
-        # self.driver.execute_script("window.scrollBy(0, 3000)", "")
-        # sleep(3)
+        sleep(3)
+        all_cards = self.find_elements(*self.PROPERTY_CARD)
 
-        all_cards = self.wait.until(EC.visibility_of_all_elements_located(self.PROPERTY_CARD))
-        for property in all_cards:
-            property_price = property.find_element(*self.PRICE_VALUE)
+        for card in all_cards:
+            property_price = self.find_element(*self.PRICE_VALUE)
             amount = property_price.text.replace('AED', '').replace(',', '')
             assert int(amount) in range(1200000, 2000000), f"Price not in Range"
 
